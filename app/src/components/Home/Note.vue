@@ -19,14 +19,16 @@
 </script>
 
 <template>
+  {{#if activeNote}}
   <article>
     <p @keyup='editNote(activeNote.created_at, $event, `title`)' contenteditable="true"
-    >{{activeNote ? activeNote.title : "New Note"}}</p>
+    >{{activeNote.title}}</p>
     <p @keyup='editNote(activeNote.created_at, $event, `created_at`)' contenteditable="true"
-    >{{activeNote ? activeNote.created_at : "New Note"}}</p>
+    >{{activeNote.created_at}}</p>
     <p @keyup='editNote(activeNote.created_at, $event, `body`)' contenteditable="true"
-    >{{activeNote ? activeNote.body : "New Note"}}</p>
+    >{{activeNote.body}}</p>
   </article>
+  {{/if}}
 </template>
 
 <style scoped>

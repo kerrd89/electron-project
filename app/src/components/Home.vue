@@ -53,6 +53,7 @@ export default {
     ></header-menu>
     <note-list
       :notes = 'notes'
+      :activeNote = 'activeNote.created_at'
       :selectNote = 'selectNote'>
     </note-list>
     <note
