@@ -7,18 +7,24 @@
     left: 0px;
     top: 10%;
   }
+
+  li {
+    border: 2px solid black;
+  }
 </style>
 
 <template>
   <ul>
-    <li>
-    this is a note preview
+    <li v-for = '(note, index) note in notes'
+      v-on:click='selectNote(index)'>
+      {{note}}
   </li>
   </ul>
 </template>
 
 <script>
   export default {
+    props: ['notes', 'selectNote'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {

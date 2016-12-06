@@ -9,8 +9,11 @@
 <template>
   <div class="app">
     <header-menu></header-menu>
-    <note-list></note-list>
-    <note></note>
+    <note-list
+      :notes = 'notes'
+      :selectNote = 'selectNote'>
+    </note-list>
+    <note :note = 'notes[activeNote]'></note>
   </div>
 </template>
 
@@ -24,6 +27,18 @@
       HeaderMenu,
       NoteList,
       Note,
+    },
+
+    data() {
+      return {
+        notes: ['note 1', 'note 2', 'note 3'],
+        activeNote: 0,
+      };
+    },
+    methods: {
+      selectNote(index) {
+        this.activeNote = index;
+      },
     },
     name: 'home-page',
   };
