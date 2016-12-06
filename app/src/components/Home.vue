@@ -9,24 +9,36 @@ export default {
     NoteList,
     Note,
   },
-
   data() {
     return {
       notes: [],
-      activeNote: '',
+      activeNote: {},
     };
   },
   methods: {
-    selectNote(e) {
-      this.activeNote = e.target.innerText;
-      console.log(this.activeNote);
+    selectNote(id) {
+      for (let i = 0; i < this.notes.length; i++) {
+        if (this.notes[i].created_at === id) {
+          this.activeNote = this.notes[i];
+        }
+      }
     },
-    addNote(e) {
-      this.pushNotes(e.target.value);
-      e.target.value = '';
+    newNote() {
+      const obj = {
+        title: 'Note Title',
+        body: 'Note Body',
+        created_at: Date.now(),
+      };
+      this.notes.push(obj);
+      this.activeNote = obj;
     },
-    pushNotes(note) {
-      this.notes.push(note);
+    editNote(id, e, property) {
+      for (let i = 0; i < this.notes.length; i++) {
+        if (this.notes[i].created_at === id) {
+          this.notes[i][property] = e.target.innerText;
+          this.activeNote = this.notes[i];
+        }
+      }
     },
   },
   name: 'home-page',
@@ -35,16 +47,16 @@ export default {
 
 <template>
   <div class="app">
-    <header-menu></header-menu>
+    <header-menu
+      :newNote='newNote'
+    ></header-menu>
     <note-list
       :notes = 'notes'
       :selectNote = 'selectNote'>
     </note-list>
     <note
-      :note='notes[activeNote]'
-      :addNote='addNote'
-      :activeNote='activeNote'
-    >
+      :editNote='editNote'
+      :activeNote='activeNote'>
     </note>
   </div>
 </template>

@@ -12,14 +12,14 @@
 
 <template>
   <header>
-    <h1>
-    header is looking good
-    </h1>
+    <h1>header</h1>
+    <button @click='newNote'>new Note</button>
   </header>
 </template>
 
 <script>
   export default {
+    props: ['newNote'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {

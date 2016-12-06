@@ -16,8 +16,8 @@ export default {
 <template>
   <ul>
     <li v-for = '(note, index) note in notes'
-    @click='selectNote($event)'>
-    {{note}}
+    @click='selectNote(note.created_at)'>
+    {{note.title}}
   </li>
 </ul>
 </template>
