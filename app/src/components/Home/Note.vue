@@ -1,24 +1,6 @@
-<style scoped>
-  textarea {
-  width: 75%;
-  height: 90%;
-  background-color: red;
-  position: absolute;
-  top: 10%;
-  left: 25%;
-}
-</style>
-
-<template>
-  <article>
-    <textarea>{{note}}<textarea>
-  </article>
-</template>
-
-
 <script>
   export default {
-    props: ['note'],
+    props: ['note', 'addNote', 'activeNote'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {
@@ -30,3 +12,23 @@
     },
   };
 </script>
+
+<template>
+  <article>
+    <textarea
+      @blur='addNote($event)'>
+      {{activeNote}}
+    </textarea>
+  </article>
+</template>
+
+<style scoped>
+  textarea {
+  width: 75%;
+  height: 30%;
+  background-color: red;
+  position: absolute;
+  top: 10%;
+  left: 25%;
+}
+</style>
