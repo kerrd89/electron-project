@@ -33,9 +33,10 @@ export default {
       this.activeNote = obj;
     },
     editNote(id, e, property) {
+      const input = e.target.innerText || ' ';
       for (let i = 0; i < this.notes.length; i++) {
         if (this.notes[i].created_at === id) {
-          this.notes[i][property] = e.target.innerText;
+          this.notes[i][property] = input;
           this.activeNote = this.notes[i];
         }
       }
