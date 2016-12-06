@@ -1,10 +1,37 @@
-<style scoped>
-  .app {
-    width: 100%;
-    height: 100%;
-    postion: relative;
-  }
-</style>
+<script>
+import HeaderMenu from './Home/HeaderMenu';
+import NoteList from './Home/NoteList';
+import Note from './Home/Note';
+
+export default {
+  components: {
+    HeaderMenu,
+    NoteList,
+    Note,
+  },
+
+  data() {
+    return {
+      notes: [],
+      activeNote: '',
+    };
+  },
+  methods: {
+    selectNote(e) {
+      this.activeNote = e.target.innerText;
+      console.log(this.activeNote);
+    },
+    addNote(e) {
+      this.pushNotes(e.target.value);
+      e.target.value = '';
+    },
+    pushNotes(note) {
+      this.notes.push(note);
+    },
+  },
+  name: 'home-page',
+};
+</script>
 
 <template>
   <div class="app">
@@ -15,43 +42,17 @@
     </note-list>
     <note
       :note='notes[activeNote]'
-      :noteText='noteText'
       :addNote='addNote'
+      :activeNote='activeNote'
     >
     </note>
   </div>
 </template>
 
-<script>
-  import HeaderMenu from './Home/HeaderMenu';
-  import NoteList from './Home/NoteList';
-  import Note from './Home/Note';
-
-  export default {
-    components: {
-      HeaderMenu,
-      NoteList,
-      Note,
-    },
-
-    data() {
-      return {
-        notes: ['note 1', 'note 2', 'note 3'],
-        activeNote: 0,
-      };
-    },
-    methods: {
-      selectNote(index) {
-        this.activeNote = index;
-      },
-      addNote(e) {
-        this.pushNotes(e.target.value);
-        e.target.value = '';
-      },
-      pushNotes(note) {
-        this.notes.push(note);
-      },
-    },
-    name: 'home-page',
-  };
-</script>
+<style scoped>
+  .app {
+    width: 100%;
+    height: 100%;
+    postion: relative;
+  }
+</style>

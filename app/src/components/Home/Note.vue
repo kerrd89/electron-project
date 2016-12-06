@@ -1,6 +1,6 @@
 <script>
   export default {
-    props: ['note', 'noteText', 'addNote'],
+    props: ['note', 'addNote', 'activeNote'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {
@@ -16,8 +16,8 @@
 <template>
   <article>
     <textarea
-      @blur='addNote($event)'
-    >
+      @blur='addNote($event)'>
+      {{activeNote}}
     </textarea>
   </article>
 </template>

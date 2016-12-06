@@ -1,3 +1,27 @@
+<script>
+export default {
+  props: ['notes', 'selectNote'],
+  created() {
+    // Set $route values that are not preset during unit testing
+    if (process.env.NODE_ENV === 'testing') {
+      this.$route = {
+        name: 'home-page',
+        path: '/home-page',
+      };
+    }
+  },
+};
+</script>
+
+<template>
+  <ul>
+    <li v-for = '(note, index) note in notes'
+    @click='selectNote($event)'>
+    {{note}}
+  </li>
+</ul>
+</template>
+
 <style scoped>
   ul {
     width: 25%;
@@ -12,27 +36,3 @@
     border: 2px solid black;
   }
 </style>
-
-<template>
-  <ul>
-    <li v-for = '(note, index) note in notes'
-      v-on:click='selectNote(index)'>
-      {{note}}
-  </li>
-  </ul>
-</template>
-
-<script>
-  export default {
-    props: ['notes', 'selectNote'],
-    created() {
-      // Set $route values that are not preset during unit testing
-      if (process.env.NODE_ENV === 'testing') {
-        this.$route = {
-          name: 'home-page',
-          path: '/home-page',
-        };
-      }
-    },
-  };
-</script>
