@@ -13,7 +13,12 @@
       :notes = 'notes'
       :selectNote = 'selectNote'>
     </note-list>
-    <note :note = 'notes[activeNote]'></note>
+    <note
+      :note='notes[activeNote]'
+      :noteText='noteText'
+      :addNote='addNote'
+    >
+    </note>
   </div>
 </template>
 
@@ -38,6 +43,13 @@
     methods: {
       selectNote(index) {
         this.activeNote = index;
+      },
+      addNote(e) {
+        this.pushNotes(e.target.value);
+        e.target.value = '';
+      },
+      pushNotes(note) {
+        this.notes.push(note);
       },
     },
     name: 'home-page',
