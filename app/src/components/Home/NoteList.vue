@@ -12,7 +12,6 @@ export default {
   },
   methods: {
     isActive(id) {
-      console.log(this.activeNote, id);
       if (this.activeNote === id) {
         return 'active';
       }
