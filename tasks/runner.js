@@ -1,6 +1,3 @@
-/**
- * Credits to https://github.com/bradstewart/electron-boilerplate-vue/blob/master/build/dev-runner.js
- */
 'use strict'
 
 const config = require('../config')
