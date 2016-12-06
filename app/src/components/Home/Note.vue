@@ -19,7 +19,6 @@
       @blur='addNote($event)'
     >
     </textarea>
-      <!-- <h1>{{noteText}}</h1> -->
   </article>
 </template>
 
