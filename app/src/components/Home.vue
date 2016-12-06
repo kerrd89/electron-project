@@ -58,7 +58,8 @@ export default {
     </note-list>
     <note
       :editNote='editNote'
-      :activeNote='activeNote'>
+      :activeNote='activeNote'
+      :newNote='newNote'>
     </note>
   </div>
 </template>
