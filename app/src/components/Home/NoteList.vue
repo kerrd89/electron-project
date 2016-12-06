@@ -26,7 +26,7 @@ export default {
   ul {
     width: 25%;
     height: 90%;
-    background-color: grey;
+    background-color: white;
     position: absolute;
     left: 0px;
     top: 10%;
