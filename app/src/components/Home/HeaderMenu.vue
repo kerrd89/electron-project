@@ -1,6 +1,7 @@
 <style scoped>
   header {
-    display:block;
+    display: flex;
+    flex-direction: row;
     width: 100%;
     height: 10%;
     background-color: blue;
@@ -8,18 +9,29 @@
     top: 0px;
     left: 0px;
   }
+  h1 {
+    background-color: red;
+    margin: auto 0px;
+  }
+  p {
+    margin: auto 0px auto auto;
+    font-size: 50px;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+  }
 </style>
 
 <template>
   <header>
-    <h1>
-    header is looking good
-    </h1>
+    <h1>header</h1>
+    <p @click='newNote'>⊕</p>
   </header>
 </template>
 
 <script>
   export default {
+    props: ['newNote'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {

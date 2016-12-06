@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['notes', 'selectNote'],
+  props: ['notes', 'selectNote', 'activeNote'],
   created() {
     // Set $route values that are not preset during unit testing
     if (process.env.NODE_ENV === 'testing') {
@@ -10,14 +10,24 @@ export default {
       };
     }
   },
+  methods: {
+    isActive(id) {
+      if (this.activeNote === id) {
+        return 'active';
+      }
+      return 'inactive';
+    },
+  },
 };
 </script>
 
 <template>
   <ul>
     <li v-for = '(note, index) note in notes'
-    @click='selectNote($event)'>
-    {{note}}
+    @click='selectNote(note.created_at)'
+    v-bind:class='isActive(note.created_at)'
+    >
+    {{note.title}}
   </li>
 </ul>
 </template>
@@ -26,7 +36,7 @@ export default {
   ul {
     width: 25%;
     height: 90%;
-    background-color: grey;
+    background-color: white;
     position: absolute;
     left: 0px;
     top: 10%;
@@ -34,5 +44,9 @@ export default {
 
   li {
     border: 2px solid black;
+  }
+
+  .active {
+    background-color:grey
   }
 </style>
