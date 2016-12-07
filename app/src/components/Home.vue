@@ -65,7 +65,7 @@ export default {
     editNote(id, e, property) {
       const input = e.target.innerText || ' ';
       for (let i = 0; i < this.notes.length; i++) {
-        if (this.notes[i].created_at === id) {
+        if (this.notes[i].id === id) {
           this.notes[i][property] = input;
           this.activeNote = this.notes[i];
         }
@@ -73,12 +73,12 @@ export default {
     },
     deleteNote(id) {
       for (let i = 0; i < this.notes.length; i++) {
-        if (this.notes[i].created_at === id) {
+        if (this.notes[i].id === id) {
           this.notes.splice(i, 1);
           this.activeNote = {};
         }
       }
-      database('notes').where('id', '2').del()
+      database('notes').where('id', id).del()
         .then((r) => console.log(r))
         .catch((err) => console.log(err));
     },
@@ -95,7 +95,7 @@ export default {
     <header-menu
       :newNote='newNote'
       :deleteNote='deleteNote'
-      :activeNote='activeNote.created_at'>
+      :activeNote='activeNote.id'>
       </header-menu>
     <note-list
       :notes = 'notes'

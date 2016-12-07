@@ -12,9 +12,7 @@ export default {
   },
   methods: {
     isActive(id) {
-      if (this.activeNote === id) {
-        return 'active';
-      }
+      if (this.activeNote === id) { return 'active'; }
       return 'inactive';
     },
   },
