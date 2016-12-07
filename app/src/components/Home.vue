@@ -3,6 +3,7 @@ import HeaderMenu from './Home/HeaderMenu';
 import NoteList from './Home/NoteList';
 import Note from './Home/Note';
 import moment from 'moment';
+import database from 
 
 export default {
   components: {
