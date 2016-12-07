@@ -25,7 +25,25 @@ export default {
     this.fetchNotes();
   },
   methods: {
+    addNote(title, body, createdAt) {
+      return database('notes').insert({ title, body, created_at: createdAt });
+    },
+    newNote() {
+      const obj = {
+        title: 'Note Title',
+        body: 'Note Body',
+        created_at: Date.now(),
+      };
+      this.addNote(obj.title, obj.body, obj.created_at)
+        .then((r) => {
+          obj.id = r[0];
+          this.activeNote = obj;
+          this.fetchNotes();
+        })
+        .catch(err => console.log(err));
+    },
     fetchNotes() {
+      this.notes = [];
       database.select().from('notes').then((notes) => {
         notes.forEach((note) => {
           this.notes.push({
@@ -37,8 +55,24 @@ export default {
         });
       });
     },
-    addNotes(title, body, createdAt) {
-      return database('notes').insert({ title, body, created_at: createdAt });
+    editNote(id, e, property) {
+      const input = e.target.innerText || ' ';
+      database('notes').where('id', id).update(property, input)
+        .then(() => {
+          this.fetchNotes();
+        })
+        .catch((err) => console.log(err));
+    },
+    deleteNote(id) {
+      database('notes').where('id', id).del()
+        .then(() => {
+          this.fetchNotes();
+          this.activeNote = {};
+        })
+        .catch((err) => console.log(err));
+    },
+    formatDate(note) {
+      return moment(note.created_at).format('M/D/YY H:mm');
     },
     selectNote(id) {
       for (let i = 0; i < this.notes.length; i++) {
@@ -46,44 +80,6 @@ export default {
           this.activeNote = this.notes[i];
         }
       }
-    },
-    newNote() {
-      const obj = {
-        title: 'Note Title',
-        body: 'Note Body',
-        created_at: Date.now(),
-      };
-
-      this.addNotes(obj.title, obj.body, obj.created_at)
-        .then((r) => {
-          obj.id = r[0];
-          this.notes.push(obj);
-          this.activeNote = obj;
-        })
-        .catch(err => console.log(err));
-    },
-    editNote(id, e, property) {
-      const input = e.target.innerText || ' ';
-      for (let i = 0; i < this.notes.length; i++) {
-        if (this.notes[i].id === id) {
-          this.notes[i][property] = input;
-          this.activeNote = this.notes[i];
-        }
-      }
-    },
-    deleteNote(id) {
-      for (let i = 0; i < this.notes.length; i++) {
-        if (this.notes[i].id === id) {
-          this.notes.splice(i, 1);
-          this.activeNote = {};
-        }
-      }
-      database('notes').where('id', id).del()
-        .then((r) => console.log(r))
-        .catch((err) => console.log(err));
-    },
-    formatDate(note) {
-      return moment(note.created_at).format('M/D/YY H:mm');
     },
   },
   name: 'home-page',
