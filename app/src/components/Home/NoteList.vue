@@ -12,9 +12,7 @@ export default {
   },
   methods: {
     isActive(id) {
-      if (this.activeNote === id) {
-        return 'active';
-      }
+      if (this.activeNote === id) { return 'active'; }
       return 'inactive';
     },
   },
@@ -24,8 +22,8 @@ export default {
 <template>
   <ul>
     <li v-for = '(note, index) note in notes'
-    @click='selectNote(note.created_at)'
-    v-bind:class='isActive(note.created_at)'
+    @click='selectNote(note.id)'
+    v-bind:class='isActive(note.id)'
     >
     {{note.title}}<span> updated: {{formatDate(note)}}</span>
   </li>

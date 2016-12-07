@@ -15,12 +15,12 @@
 
 <template>
   <article v-if='activeNote.title'>
-    <p @keyup='editNote(activeNote.created_at, $event, `title`)' contenteditable="true"
+    <p @keyup='editNote(activeNote.id, $event, `title`)' contenteditable="true"
     >{{activeNote.title}}</p>
-    <p @keyup='editNote(activeNote.created_at, $event, `created_at`)' contenteditable="true"
+    <p @keyup='editNote(activeNote.id, $event, `created_at`)' contenteditable="true"
     >updated: {{formatDate(activeNote)}}</p>
-    <p @keyup='editNote(activeNote.created_at, $event, `body`)' contenteditable="true"
-    >{{activeNote.body}}</p>
+    <p @keyup='editNote(activeNote.id, $event, `body`)' contenteditable="true"
+    >{{activeNote.body}}{{activeNote.id}}</p>
   </article>
   <article v-else
     @click='newNote'>
