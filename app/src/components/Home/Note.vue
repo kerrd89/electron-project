@@ -1,6 +1,6 @@
 <script>
   export default {
-    props: ['note', 'editNote', 'activeNote', 'newNote'],
+    props: ['note', 'editNote', 'activeNote', 'newNote', 'formatDate'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {
@@ -18,7 +18,7 @@
     <p @keyup='editNote(activeNote.created_at, $event, `title`)' contenteditable="true"
     >{{activeNote.title}}</p>
     <p @keyup='editNote(activeNote.created_at, $event, `created_at`)' contenteditable="true"
-    >{{activeNote.created_at}}</p>
+    >updated: {{formatDate(activeNote)}}</p>
     <p @keyup='editNote(activeNote.created_at, $event, `body`)' contenteditable="true"
     >{{activeNote.body}}</p>
   </article>

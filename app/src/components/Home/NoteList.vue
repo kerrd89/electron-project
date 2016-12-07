@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['notes', 'selectNote', 'activeNote'],
+  props: ['notes', 'selectNote', 'activeNote', 'formatDate'],
   created() {
     // Set $route values that are not preset during unit testing
     if (process.env.NODE_ENV === 'testing') {
@@ -27,7 +27,7 @@ export default {
     @click='selectNote(note.created_at)'
     v-bind:class='isActive(note.created_at)'
     >
-    {{note.title}}
+    {{note.title}}<span> updated: {{formatDate(note)}}</span>
   </li>
 </ul>
 </template>
@@ -48,5 +48,9 @@ export default {
 
   .active {
     background-color:grey
+  }
+
+  span {
+    font-size: 12px;
   }
 </style>

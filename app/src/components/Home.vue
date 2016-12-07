@@ -2,6 +2,7 @@
 import HeaderMenu from './Home/HeaderMenu';
 import NoteList from './Home/NoteList';
 import Note from './Home/Note';
+import moment from 'moment';
 
 export default {
   components: {
@@ -22,6 +23,7 @@ export default {
           this.activeNote = this.notes[i];
         }
       }
+      console.log(moment(this.activeNote.created_at).format('YYYY-MM-DD HH:mm'));
     },
     newNote() {
       const obj = {
@@ -49,6 +51,9 @@ export default {
         }
       }
     },
+    formatDate(note) {
+      return moment(note.created_at).format('M/D/YY H:mm');
+    },
   },
   name: 'home-page',
 };
@@ -64,12 +69,14 @@ export default {
     <note-list
       :notes = 'notes'
       :activeNote = 'activeNote.created_at'
-      :selectNote = 'selectNote'>
+      :selectNote = 'selectNote'
+      :formatDate = 'formatDate'>
     </note-list>
     <note
       :editNote='editNote'
       :activeNote='activeNote'
-      :newNote='newNote'>
+      :newNote='newNote'
+      :formatDate='formatDate'>
     </note>
   </div>
 </template>
