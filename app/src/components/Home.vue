@@ -7,6 +7,8 @@ import { remote } from 'electron';
 import path from 'path';
 const database = remote.require(path.join(process.cwd(), 'app/database.js'));
 
+global.database = database;
+
 export default {
   components: {
     HeaderMenu,
@@ -19,17 +21,31 @@ export default {
       activeNote: {},
     };
   },
+  created() {
+    this.fetchNotes();
+  },
   methods: {
     fetchNotes() {
-      database.select().from('notes').then(notes => console.log(notes));
+      database.select().from('notes').then((notes) => {
+        notes.forEach((note) => {
+          this.notes.push({
+            title: note.title,
+            body: note.body,
+            created_at: parseInt(note.created_at, 10),
+            id: note.id,
+          });
+        });
+      });
+    },
+    addNotes(title, body, createdAt) {
+      return database('notes').insert({ title, body, created_at: createdAt });
     },
     selectNote(id) {
       for (let i = 0; i < this.notes.length; i++) {
-        if (this.notes[i].created_at === id) {
+        if (this.notes[i].id === id) {
           this.activeNote = this.notes[i];
         }
       }
-      console.log(moment(this.activeNote.created_at).format('YYYY-MM-DD HH:mm'));
     },
     newNote() {
       const obj = {
@@ -37,9 +53,14 @@ export default {
         body: 'Note Body',
         created_at: Date.now(),
       };
-      this.notes.push(obj);
-      this.activeNote = obj;
-      this.fetchNotes();
+
+      this.addNotes(obj.title, obj.body, obj.created_at)
+        .then((r) => {
+          obj.id = r[0];
+          this.notes.push(obj);
+          this.activeNote = obj;
+        })
+        .catch(err => console.log(err));
     },
     editNote(id, e, property) {
       const input = e.target.innerText || ' ';
@@ -57,6 +78,9 @@ export default {
           this.activeNote = {};
         }
       }
+      database('notes').where('id', '2').del()
+        .then((r) => console.log(r))
+        .catch((err) => console.log(err));
     },
     formatDate(note) {
       return moment(note.created_at).format('M/D/YY H:mm');
@@ -75,7 +99,7 @@ export default {
       </header-menu>
     <note-list
       :notes = 'notes'
-      :activeNote = 'activeNote.created_at'
+      :activeNote = 'activeNote.id'
       :selectNote = 'selectNote'
       :formatDate = 'formatDate'>
     </note-list>

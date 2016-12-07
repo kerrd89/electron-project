@@ -20,7 +20,7 @@
     <p @keyup='editNote(activeNote.created_at, $event, `created_at`)' contenteditable="true"
     >updated: {{formatDate(activeNote)}}</p>
     <p @keyup='editNote(activeNote.created_at, $event, `body`)' contenteditable="true"
-    >{{activeNote.body}}</p>
+    >{{activeNote.id}}</p>
   </article>
   <article v-else
     @click='newNote'>
