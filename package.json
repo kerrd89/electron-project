@@ -15,7 +15,7 @@
     "pack": "cross-env NODE_ENV=production webpack -p --progress --colors",
     "vue:route": "node tasks/vue/route.js",
     "vuex:module": "node tasks/vuex/module.js",
-    "postinstall": "npm run lint:fix && cd app && npm install"
+    "postinstall": "electron-rebuild && npm run lint:fix && cd app && npm install"
   },
   "author": "Greg Holguin <simulatedgreg@gmail.com>",
   "license": "MIT",
@@ -56,6 +56,9 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "moment": "^2.17.1"
+    "electron-rebuild": "^1.4.0",
+    "knex": "^0.12.6",
+    "moment": "^2.17.1",
+    "sqlite3": "^3.1.8"
   }
 }
