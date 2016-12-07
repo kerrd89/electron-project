@@ -3,7 +3,9 @@ import HeaderMenu from './Home/HeaderMenu';
 import NoteList from './Home/NoteList';
 import Note from './Home/Note';
 import moment from 'moment';
-import database from 
+import { remote } from 'electron';
+import path from 'path';
+const database = remote.require(path.join(process.cwd(), 'app/database.js'));
 
 export default {
   components: {
@@ -18,6 +20,9 @@ export default {
     };
   },
   methods: {
+    fetchNotes() {
+      database.select().from('notes').then(notes => console.log(notes));
+    },
     selectNote(id) {
       for (let i = 0; i < this.notes.length; i++) {
         if (this.notes[i].created_at === id) {
@@ -34,6 +39,7 @@ export default {
       };
       this.notes.push(obj);
       this.activeNote = obj;
+      this.fetchNotes();
     },
     editNote(id, e, property) {
       const input = e.target.innerText || ' ';

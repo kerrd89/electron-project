@@ -3,8 +3,8 @@ require('sqlite3');
 const database = require('knex')({
   client: 'sqlite3',
   connection: {
-    filename: './db.sqlite'
-  }
+    filename: './db.sqlite',
+  },
 });
 
 database.schema.hasTable('notes').then((exists) => {
