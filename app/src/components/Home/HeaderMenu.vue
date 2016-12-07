@@ -26,12 +26,13 @@
   <header>
     <h1>header</h1>
     <p @click='newNote'>⊕</p>
+    <p @click='deleteNote(activeNote)'>DELETE</p>
   </header>
 </template>
 
 <script>
   export default {
-    props: ['newNote'],
+    props: ['newNote', 'deleteNote', 'activeNote'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {

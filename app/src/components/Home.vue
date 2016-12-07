@@ -41,6 +41,14 @@ export default {
         }
       }
     },
+    deleteNote(id) {
+      for (let i = 0; i < this.notes.length; i++) {
+        if (this.notes[i].created_at === id) {
+          this.notes.splice(i, 1);
+          this.activeNote = {};
+        }
+      }
+    },
   },
   name: 'home-page',
 };
@@ -50,7 +58,9 @@ export default {
   <div class="app">
     <header-menu
       :newNote='newNote'
-    ></header-menu>
+      :deleteNote='deleteNote'
+      :activeNote='activeNote.created_at'>
+      </header-menu>
     <note-list
       :notes = 'notes'
       :activeNote = 'activeNote.created_at'
