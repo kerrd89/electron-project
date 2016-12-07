@@ -9,10 +9,6 @@
     top: 0px;
     left: 0px;
   }
-  h1 {
-    background-color: red;
-    margin: auto 0px;
-  }
   p {
     margin: auto 0px auto auto;
     font-size: 50px;
@@ -24,7 +20,6 @@
 
 <template>
   <header>
-    <h1>header</h1>
     <p @click='newNote'>⊕</p>
     <p @click='deleteNote(activeNote)'>DELETE</p>
   </header>
