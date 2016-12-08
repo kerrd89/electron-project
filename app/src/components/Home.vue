@@ -75,10 +75,8 @@ export default {
         .catch((err) => console.log(err));
     },
     isDirty() {
-      if (this.activeNote.title) {
-        return !(this.activeNote.title === this.savedNote.title &&
-          this.activeNote.body === this.savedNote.body); }
-      return 'no selected note';
+      return !(this.activeNote.title === this.savedNote.title &&
+        this.activeNote.body === this.savedNote.body);
     },
     deleteNote(id) {
       database('notes').where('id', id).del()
