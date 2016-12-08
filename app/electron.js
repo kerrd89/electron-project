@@ -25,6 +25,7 @@ function createWindow () {
     width: 800,
     minWidth: 600,
     minHeight: 500,
+    titleBarStyle: 'hidden-inset',
   });
 
   mainWindow.loadURL(config.url);
