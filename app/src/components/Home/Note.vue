@@ -20,11 +20,11 @@
 
 <template>
   <article v-if='activeNote.title'>
-    <p @keyup='onChange(activeNote.id, $event, `title`)' contenteditable="true"
-    >{{activeNote.title}}</p>
-    <p @keyup='onChange(activeNote.id, $event, `created_at`)'
-    >updated: {{formatDate(activeNote)}}</p>
-    <p @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true"
+    <p class="time-stamp" @keyup='onChange(activeNote.id, $event, `created_at`)'
+    >{{formatDate(activeNote)}}</p>
+    <h1 @keyup='onChange(activeNote.id, $event, `title`)' contenteditable="true"
+    >{{activeNote.title}}</h1>
+    <p class="body" @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true"
     >{{activeNote.body}}</p>
   </article>
   <article v-else
@@ -34,11 +34,31 @@
 
 <style scoped>
   article {
-  width: 75%;
-  height: 90%;
-  background-color: red;
-  position: absolute;
-  top: 10%;
-  left: 25%;
+    width: 75%;
+    height: 90%;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    border-left: 2px solid #595d58;
+  }
+
+  h1 {
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    margin-left: 20px;
+    outline: none;
+    text-align: left;
+  }
+
+  .time-stamp {
+    margin-top: 30px;
+  }
+
+  .body {
+    letter-spacing: 0.5px;
+    margin-top: 15px;
+    margin-left: 20px;
+    outline: none;
+    text-align: left;
   }
 </style>
