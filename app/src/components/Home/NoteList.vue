@@ -39,7 +39,7 @@ export default {
   }
 
   li {
-    border: 2px solid black;
+    border: 2px solid #dfebe0;
     font-size: 20px;
     height: 80px;
     margin: 10px;
@@ -50,7 +50,7 @@ export default {
   }
 
   .active {
-    background-color:grey
+    background-color: rgb(92, 159, 95);
   }
 
   span {

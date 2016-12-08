@@ -39,7 +39,8 @@
     position: absolute;
     top: 10%;
     left: 25%;
-    border-left: 2px solid #595d58;
+    border-left: 4px solid #c6d6c2;
+    padding: 0 40px;
   }
 
   h1 {
