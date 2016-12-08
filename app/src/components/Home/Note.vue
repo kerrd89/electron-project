@@ -1,6 +1,6 @@
 <script>
   export default {
-    props: ['note', 'editNote', 'activeNote', 'newNote', 'formatDate'],
+    props: ['editNote', 'activeNote', 'newNote', 'formatDate'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {
@@ -10,16 +10,21 @@
         };
       }
     },
+    methods: {
+      onChange(id, e, prop) {
+        this.editNote(id, e, prop);
+      },
+    },
   };
 </script>
 
 <template>
   <article v-if='activeNote.title'>
-    <p @keyup='editNote(activeNote.id, $event, `title`)' contenteditable="true"
+    <p @keyup='onChange(activeNote.id, $event, `title`)' contenteditable="true"
     >{{activeNote.title}}</p>
-    <p @keyup='editNote(activeNote.id, $event, `created_at`)'
+    <p @keyup='onChange(activeNote.id, $event, `created_at`)'
     >updated: {{formatDate(activeNote)}}</p>
-    <p @keyup='editNote(activeNote.id, $event, `body`)' contenteditable="true"
+    <p @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true"
     >{{activeNote.body}}</p>
   </article>
   <article v-else

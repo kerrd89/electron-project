@@ -8,6 +8,7 @@
     position: absolute;
     top: 0px;
     left: 0px;
+    -webkit-app-region: drag;
   }
   p {
     margin: auto 0px auto auto;
@@ -19,15 +20,16 @@
 </style>
 
 <template>
-  <header>
+  <header>{{isDirty}}
     <p @click='newNote'>⊕</p>
     <p @click='deleteNote(activeNote)'>DELETE</p>
+    <p @click='saveNote(activeNote)'>SAVE</p>
   </header>
 </template>
 
 <script>
   export default {
-    props: ['newNote', 'deleteNote', 'activeNote'],
+    props: ['newNote', 'deleteNote', 'activeNote', 'isDirty', 'saveNote'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {

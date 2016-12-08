@@ -15,14 +15,15 @@ export default {
     NoteList,
     Note,
   },
+  created() {
+    this.fetchNotes();
+  },
   data() {
     return {
       notes: [],
       activeNote: {},
+      savedNote: {},
     };
-  },
-  created() {
-    this.fetchNotes();
   },
   methods: {
     addNote(title, body, createdAt) {
@@ -57,11 +58,27 @@ export default {
     },
     editNote(id, e, property) {
       const input = e.target.innerText || ' ';
-      database('notes').where('id', id).update(property, input)
+      this.activeNote[property] = input;
+      for (let i = 0; i < this.notes.length; i++) {
+        if (this.notes[i].id === id) {
+          this.notes[i][property] = input;
+        }
+      }
+    },
+    saveNote(id) {
+      database('notes').where('id', id).update({ title: this.activeNote.title,
+        body: this.activeNote.body })
         .then(() => {
           this.fetchNotes();
+          this.savedNote = { ...this.activeNote };
         })
         .catch((err) => console.log(err));
+    },
+    isDirty() {
+      if (this.activeNote.title) {
+        return !(this.activeNote.title === this.savedNote.title &&
+          this.activeNote.body === this.savedNote.body); }
+      return 'no selected note';
     },
     deleteNote(id) {
       database('notes').where('id', id).del()
@@ -77,7 +94,8 @@ export default {
     selectNote(id) {
       for (let i = 0; i < this.notes.length; i++) {
         if (this.notes[i].id === id) {
-          this.activeNote = this.notes[i];
+          this.activeNote = { ...this.notes[i] };
+          this.savedNote = { ...this.notes[i] };
         }
       }
     },
@@ -89,8 +107,10 @@ export default {
 <template>
   <div class="app">
     <header-menu
+      :isDirty='this.isDirty()'
       :newNote='newNote'
       :deleteNote='deleteNote'
+      :saveNote='saveNote'
       :activeNote='activeNote.id'>
       </header-menu>
     <note-list
