@@ -34,13 +34,12 @@
 
 <style scoped>
   article {
-    width: 75%;
     height: 90%;
+    width: 74%;
     position: absolute;
     top: 10%;
     left: 25%;
     border-left: 4px solid #c6d6c2;
-    padding: 0 40px;
   }
 
   h1 {
@@ -52,7 +51,7 @@
   }
 
   .time-stamp {
-    margin-top: 30px;
+    margin: 30px auto 0px auto;
   }
 
   .body {
