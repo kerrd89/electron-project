@@ -4,12 +4,11 @@
     flex-direction: row;
     width: 100%;
     height: 10%;
-    background-color: blue;
     position: absolute;
     top: 0px;
     left: 0px;
     -webkit-app-region: drag;
-    background: #EEEEEE;
+    background: #698679;
     -webkit-justify-content: flex-end;
     justify-content: flex-end;
   }
@@ -19,18 +18,16 @@
   }
   button {
     border-radius: 2px;
-    font-family: Roboto-Medium;
     color: black;
     border: none;
     font-size: 14px;
     letter-spacing: 0.5px;
-    background: #EEEEEE;
+    background: #698679;
     cursor: pointer;
     margin-right: 40px;
   }
   button:disabled {
     border-radius: 2px;
-    font-family: Roboto-Medium;
     font-size: 14px;
     color: rgba(0,0,0,0.26);
     letter-spacing: 0.5px;

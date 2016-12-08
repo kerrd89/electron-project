@@ -31,8 +31,8 @@ export default {
     },
     newNote() {
       const obj = {
-        title: 'Note Title',
-        body: 'Note Body',
+        title: 'New Note',
+        body: 'Body',
         created_at: Date.now(),
       };
       this.addNote(obj.title, obj.body, obj.created_at)
@@ -87,7 +87,10 @@ export default {
         .catch((err) => console.log(err));
     },
     formatDate(note) {
-      return moment(note.created_at).format('M/D/YY H:mm');
+      return moment(note.created_at).format('MMMM do, YYYY h:mm a');
+    },
+    formatListDate(note) {
+      return moment(note.created_at).format('MM/d/YY');
     },
     selectNote(id) {
       for (let i = 0; i < this.notes.length; i++) {
@@ -115,7 +118,7 @@ export default {
       :notes = 'notes'
       :activeNote = 'activeNote.id'
       :selectNote = 'selectNote'
-      :formatDate = 'formatDate'>
+      :formatListDate = 'formatListDate'>
     </note-list>
     <note
       :editNote='editNote'
