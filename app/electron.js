@@ -25,8 +25,6 @@ function createWindow () {
     width: 800,
     minWidth: 600,
     minHeight: 500,
-    maxWidth: 800,
-    maxHeight: 600,
     titleBarStyle: 'hidden-inset',
     title: 'Notes',
     icon: path.join(__dirname, 'app/icons/icon.ico'),

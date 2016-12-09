@@ -37,8 +37,8 @@
 <template>
   <header>
     <p @click='newNote'>
-      <svg width="30px" height="30px" viewBox="0 -1 25 25" >
-        <polygon id="Shape" stroke="none" fill="#000000" fill-rule="evenodd" points="11 5 11 11 5 11 5 13 11 13 11 19 13 19 13 13 19 13 19 11 13 11 13 5"></polygon>
+      <svg width="19px" height="19px" viewBox="3 2 19 19">
+          <path d="M3,17.25 L3,21 L6.75,21 L17.81,9.94 L14.06,6.19 L3,17.25 L3,17.25 Z M20.71,7.04 C21.1,6.65 21.1,6.02 20.71,5.63 L18.37,3.29 C17.98,2.9 17.35,2.9 16.96,3.29 L15.13,5.12 L18.88,8.87 L20.71,7.04 L20.71,7.04 Z" id="Shape" stroke="none" fill="#000000" fill-rule="evenodd"></path>
       </svg>
     </p>
     <p @click='deleteNote(activeNote)'>
