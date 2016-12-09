@@ -1,7 +1,7 @@
 <script>
   const synth = window.speechSynthesis;
   export default {
-    props: ['editNote', 'activeNote', 'newNote', 'formatDate'],
+    props: ['editNote', 'activeNote', 'newNote', 'formatDate', 'isDirty'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {
@@ -33,6 +33,9 @@
     >{{activeNote.title}}</h1>
     <p class="body" @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true"
     >{{activeNote.body}}</p>
+    <p class="save-message" v-show='isDirty'>
+      <span>This note has unsaved changes. Please save before leaving note.</span>
+    </p>
     <button @click='readNote(activeNote)'>Read Note</button>
   </article>
   <article v-else
@@ -48,6 +51,11 @@
     top: 10%;
     left: 25%;
     border-left: 4px solid #c6d6c2;
+  }
+
+  span {
+    background-color: yellow;
+    font-weight: 900;
   }
 
   h1 {
@@ -70,6 +78,7 @@
   }
 
   .body {
+    height: 100px;
     letter-spacing: 0.5px;
     margin-top: 15px;
     margin-left: 20px;
