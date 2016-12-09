@@ -93,6 +93,7 @@ export default {
       return moment(note.created_at).format('MM/d/YY');
     },
     selectNote(id) {
+      this.saveNote(this.activeNote.id);
       for (let i = 0; i < this.notes.length; i++) {
         if (this.notes[i].id === id) {
           this.activeNote = { ...this.notes[i] };

@@ -22,12 +22,12 @@ export default {
 <template>
   <ul>
     <li v-for = '(note, index) note in notes'
-    @click='selectNote(note.id)'
-    v-bind:class='isActive(note.id)'>
-    <h3>{{note.title}}</h3>
-    <span>Created on: {{formatListDate(note)}}</span>
-  </li>
-</ul>
+      @click='selectNote(note.id)'
+      v-bind:class='isActive(note.id)'>
+      <h3>{{note.title}}</h3>
+      <span>Created on: {{formatListDate(note)}}</span>
+    </li>
+  </ul>
 </template>
 
 <style scoped>
@@ -42,13 +42,9 @@ export default {
 
   li {
     border: 2px solid #dfebe0;
-    font-size: 20px;
-    height: 80px;
+    font-size: 16px;
     margin: 10px;
-  }
-
-  h3 {
-    margin-top: 10px;
+    padding: 20px
   }
 
   .active {
@@ -56,7 +52,7 @@ export default {
   }
 
   span {
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 500;
   }
 </style>
