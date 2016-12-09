@@ -14,6 +14,7 @@ database.schema.hasTable('notes').then((exists) => {
       t.string('title', 100);
       t.text('body');
       t.string('created_at');
+      t.integer('flagged');
     });
   }
 });

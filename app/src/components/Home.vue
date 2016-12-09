@@ -26,16 +26,17 @@ export default {
     };
   },
   methods: {
-    addNote(title, body, createdAt) {
-      return database('notes').insert({ title, body, created_at: createdAt });
+    addNote(title, body, createdAt, flagged) {
+      return database('notes').insert({ title, body, created_at: createdAt, flagged });
     },
     newNote() {
       const obj = {
         title: 'New Note',
         body: 'Body',
         created_at: Date.now(),
+        flagged: 0,
       };
-      this.addNote(obj.title, obj.body, obj.created_at)
+      this.addNote(obj.title, obj.body, obj.created_at, obj.flagged)
         .then((r) => {
           obj.id = r[0];
           this.activeNote = obj;
@@ -47,11 +48,13 @@ export default {
       this.notes = [];
       database.select().from('notes').then((notes) => {
         notes.forEach((note) => {
+          console.log(note.flagged);
           this.notes.push({
             title: note.title,
             body: note.body,
             created_at: parseInt(note.created_at, 10),
             id: note.id,
+            flagged: note.flagged,
           });
         });
       });
@@ -65,9 +68,17 @@ export default {
         }
       }
     },
+    toggleFlag() {
+      if (this.activeNote.flagged) {
+        this.activeNote.flagged = 0;
+      } else {
+        this.activeNote.flagged = 1;
+      }
+      this.saveNote(this.activeNote.id);
+    },
     saveNote(id) {
       database('notes').where('id', id).update({ title: this.activeNote.title,
-        body: this.activeNote.body })
+        body: this.activeNote.body, flagged: this.activeNote.flagged })
         .then(() => {
           this.fetchNotes();
           this.savedNote = { ...this.activeNote };
@@ -126,7 +137,8 @@ export default {
       :editNote='editNote'
       :activeNote='activeNote'
       :newNote='newNote'
-      :formatDate='formatDate'>
+      :formatDate='formatDate'
+      :toggleFlag='toggleFlag'>
     </note>
   </div>
 </template>

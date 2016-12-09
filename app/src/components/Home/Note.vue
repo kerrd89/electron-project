@@ -1,7 +1,7 @@
 <script>
   const synth = window.speechSynthesis;
   export default {
-    props: ['editNote', 'activeNote', 'newNote', 'formatDate', 'isDirty'],
+    props: ['editNote', 'activeNote', 'newNote', 'formatDate', 'isDirty', 'toggleFlag'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {
@@ -30,6 +30,11 @@
     <div class='note-header'>
       <p class="time-stamp" @keyup='onChange(activeNote.id, $event, `created_at`)'
       >{{formatDate(activeNote)}}</p>
+      <button @click='toggleFlag' class='read-note-button'>
+        <svg width="20px" height="20px" viewBox="2 2 20 20">
+            <path d="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 L12,2 Z M13,17 L11,17 L11,15 L13,15 L13,17 L13,17 Z M13,13 L11,13 L11,7 L13,7 L13,13 L13,13 Z" id="Shape" stroke="none" fill-opacity="0.7" fill="#000000" fill-rule="evenodd"></path>
+        </svg>
+      </button>
       <button @click='readNote(activeNote)' class='read-note-button'>
         <svg width="19px" height="18px" viewBox="3 3 19 18">
             <path d="M3,9 L3,15 L7,15 L12,20 L12,4 L7,9 L3,9 L3,9 Z M16.5,12 C16.5,10.23 15.48,8.71 14,7.97 L14,16.02 C15.48,15.29 16.5,13.77 16.5,12 L16.5,12 Z M14,3.23 L14,5.29 C16.89,6.15 19,8.83 19,12 C19,15.17 16.89,17.85 14,18.71 L14,20.77 C18.01,19.86 21,16.28 21,12 C21,7.72 18.01,4.14 14,3.23 L14,3.23 Z" id="Shape" stroke="none" fill-opacity="0.7" fill="#000000" fill-rule="evenodd"></path>
