@@ -1,4 +1,5 @@
 <script>
+  const synth = window.speechSynthesis;
   export default {
     props: ['editNote', 'activeNote', 'newNote', 'formatDate'],
     created() {
@@ -14,6 +15,12 @@
       onChange(id, e, prop) {
         this.editNote(id, e, prop);
       },
+      readNote(note) {
+        const voices = synth.getVoices();
+        const noteText = new SpeechSynthesisUtterance(note.body);
+        noteText.voice = voices[0];
+        synth.speak(noteText);
+      },
     },
   };
 </script>
@@ -26,6 +33,7 @@
     >{{activeNote.title}}</h1>
     <p class="body" @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true"
     >{{activeNote.body}}</p>
+    <button @click='readNote(activeNote)'>Read Note</button>
   </article>
   <article v-else
     @click='newNote'>
@@ -48,6 +56,13 @@
     margin-left: 20px;
     outline: none;
     text-align: left;
+  }
+
+  button {
+    font-size: 20px;
+    background-color: #e0e0e7;
+    border: none;
+    padding: 5px;
   }
 
   .time-stamp {

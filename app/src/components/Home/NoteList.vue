@@ -32,10 +32,12 @@ export default {
 
 <style scoped>
   ul {
+    height: 90%;
     width: 25%;
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 10%;
+    overflow-y: scroll;
   }
 
   li {

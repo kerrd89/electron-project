@@ -47,7 +47,7 @@
       </svg>
     </p>
     <p @click='saveNote(activeNote)'>
-      <button v-bind:disabled='!isDirty'>SAVE</button>
+      <button id='save' v-bind:disabled='!isDirty'>SAVE</button>
     </p>
   </header>
 </template>
