@@ -43,7 +43,6 @@
     <p class="save-message" v-show='isDirty'>
       <span>This note has unsaved changes. Please save before leaving note.</span>
     </p>
-
   </article>
   <article v-else
     @click='newNote'>
@@ -67,8 +66,7 @@
 
   h1 {
     letter-spacing: 0.5px;
-    margin-top: 10px;
-    margin-left: 20px;
+    margin: 10px 40px;
     outline: none;
     text-align: left;
   }
@@ -97,8 +95,7 @@
   .body {
     height: 100px;
     letter-spacing: 0.5px;
-    margin-top: 15px;
-    margin-left: 20px;
+    margin: 20px 40px;
     outline: none;
     text-align: left;
   }
