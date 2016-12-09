@@ -121,6 +121,7 @@ export default {
       :formatListDate = 'formatListDate'>
     </note-list>
     <note
+      :isDirty='this.isDirty()'
       :editNote='editNote'
       :activeNote='activeNote'
       :newNote='newNote'
