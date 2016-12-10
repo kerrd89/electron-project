@@ -30,12 +30,16 @@
         const script = `set the clipboard to "${body}"`;
         applescript.execString(script);
       },
+      cancelReadNote() {
+        console.log('hit');
+        synth.cancel();
+      },
     },
   };
 </script>
 
 <template>
-  <article v-if='activeNote.title'>
+  <article v-if='activeNote.title' @focusout='cancelReadNote'>
     <div class='note-header'>
       <p class="time-stamp" @keyup='onChange(activeNote.id, $event, `created_at`)'
       >{{formatDate(activeNote)}}</p>
