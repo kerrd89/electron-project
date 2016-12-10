@@ -15,6 +15,11 @@ export default {
       if (this.activeNote === id) { return 'active'; }
       return 'inactive';
     },
+    sliceTitle(title) {
+      const shortTitle = title.slice(0, 10);
+      console.log(shortTitle);
+      return shortTitle;
+    },
   },
 };
 </script>
@@ -27,7 +32,8 @@ export default {
       <svg width="15px" height="15px" viewBox="2 2 20 20" v-show='note.flagged'>
         <path d="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 L12,2 Z M13,17 L11,17 L11,15 L13,15 L13,17 L13,17 Z M13,13 L11,13 L11,7 L13,7 L13,13 L13,13 Z" id="Shape" stroke="none" fill-opacity="0.7" fill="#F44336" fill-rule="evenodd"></path>
       </svg>
-      <h3>{{note.title}}</h3>
+      <h3 v-if='note.title.length < 10'>{{note.title}}</h3>
+      <h3 v-else>{{sliceTitle(note.title)}}</h3>
       <span>Created on: {{formatListDate(note)}}</span>
     </li>
   </ul>
