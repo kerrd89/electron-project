@@ -5,7 +5,9 @@ import Note from './Home/Note';
 import moment from 'moment';
 import { remote } from 'electron';
 import path from 'path';
+const mainProcess = remote.require(path.join(process.cwd(), 'app/electron.js'));
 const database = remote.require(path.join(process.cwd(), 'app/database.js'));
+const currentWindow = remote.getCurrentWindow();
 
 global.database = database;
 
@@ -90,12 +92,15 @@ export default {
         this.activeNote.body === this.savedNote.body);
     },
     deleteNote(id) {
-      database('notes').where('id', id).del()
-        .then(() => {
-          this.fetchNotes();
-          this.activeNote = {};
-        })
-        .catch((err) => console.log(err));
+      const confirm = mainProcess.confirmDelete(currentWindow);
+      if (confirm) {
+        database('notes').where('id', id).del()
+          .then(() => {
+            this.fetchNotes();
+            this.activeNote = {};
+          })
+          .catch((err) => console.log(err));
+      }
     },
     formatDate(note) {
       return moment(note.created_at).format('MMMM do, YYYY h:mm a');
