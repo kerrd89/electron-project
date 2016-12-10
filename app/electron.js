@@ -63,7 +63,9 @@ app.on('activate', () => {
 const confirmDelete = exports.confirmDelete = (win) => {
   const response = electron.dialog.showMessageBox(win, {
     type: 'warning',
-    buttons: ['yes', 'no'],
+    buttons: ['Delete', 'Cancel'],
+    message: 'Are you sure you want to delete this note?',
+    icon: null,
   });
   if (!response) { return true; }
   return false;
