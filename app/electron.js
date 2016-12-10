@@ -17,9 +17,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 function createWindow () {
-  /**
-   * Initial window options
-   */
   mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
@@ -62,3 +59,14 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+const confirmDelete = exports.confirmDelete = (win) => {
+  const response = electron.dialog.showMessageBox(win, {
+    type: 'warning',
+    buttons: ['Delete', 'Cancel'],
+    message: 'Are you sure you want to delete this note?',
+    icon: null,
+  });
+  if (!response) { return true; }
+  return false;
+};
