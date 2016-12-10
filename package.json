@@ -62,6 +62,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "applescript": "^1.0.0",
     "electron-compile": "^4.0.2",
     "electron-prebuilt-compile": "^1.4.10",
     "electron-rebuild": "^1.4.0",
