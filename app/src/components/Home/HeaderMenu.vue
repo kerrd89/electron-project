@@ -32,6 +32,14 @@
     color: rgba(0,0,0,0.26);
     letter-spacing: 0.5px;
   }
+  input {
+    margin: auto 10px auto 0px;
+    height: 30px;
+    font-size: 16px;
+    background-color: #e0e0e7;
+    border: none;
+    padding: 5px;
+  }
 </style>
 
 <template>
@@ -49,12 +57,13 @@
     <p @click='saveNote(activeNote)'>
       <button id='save' v-bind:disabled='!isDirty'>SAVE</button>
     </p>
+    <input @keyup='searchNotes($event)' placeholder='search'/>
   </header>
 </template>
 
 <script>
   export default {
-    props: ['newNote', 'deleteNote', 'activeNote', 'isDirty', 'saveNote'],
+    props: ['newNote', 'deleteNote', 'activeNote', 'isDirty', 'saveNote', 'searchNotes'],
     created() {
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {

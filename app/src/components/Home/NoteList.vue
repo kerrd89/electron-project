@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['notes', 'selectNote', 'activeNote', 'formatListDate'],
+  props: ['filteredNotes', 'selectNote', 'activeNote', 'formatListDate', 'search'],
   created() {
     // Set $route values that are not preset during unit testing
     if (process.env.NODE_ENV === 'testing') {
@@ -21,7 +21,7 @@ export default {
 
 <template>
   <ul>
-    <li v-for = '(note, index) note in notes'
+    <li v-for = '(note, index) note in filteredNotes'
       @click='selectNote(note.id)'
       v-bind:class='isActive(note.id)'>
       <svg width="15px" height="15px" viewBox="2 2 20 20" v-show='note.flagged'>
