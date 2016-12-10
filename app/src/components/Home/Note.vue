@@ -62,9 +62,12 @@
     top: 10%;
     left: 25%;
     border-left: 4px solid #c6d6c2;
+    display: flex;
+    flex-direction: column;
   }
 
   span {
+    margin-top: 10px;
     background-color: yellow;
     font-weight: 900;
   }
@@ -98,7 +101,6 @@
   }
 
   .body {
-    height: 100px;
     letter-spacing: 0.5px;
     margin: 20px 40px;
     outline: none;
