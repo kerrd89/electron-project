@@ -115,14 +115,12 @@ export default {
     searchNotes(e) {
       this.search = e.target.value;
     },
-    filteredNotes(notes) {
+    filteredNotes(n) {
       const s = this.search.toLowerCase();
       if (this.search) {
-        const potato = notes.filter(note => note.title.toLowerCase().includes(s));
-        console.log(potato);
-        return potato;
+        return n.filter(n => n.title.toLowerCase().includes(s) || n.body.toLowerCase().includes(s));
       }
-      return notes;
+      return n;
     },
   },
   name: 'home-page',
