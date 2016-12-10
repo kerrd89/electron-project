@@ -23,6 +23,7 @@ export default {
       notes: [],
       activeNote: {},
       savedNote: {},
+      search: '',
     };
   },
   methods: {
@@ -48,7 +49,6 @@ export default {
       this.notes = [];
       database.select().from('notes').then((notes) => {
         notes.forEach((note) => {
-          console.log(note.flagged);
           this.notes.push({
             title: note.title,
             body: note.body,
@@ -112,6 +112,18 @@ export default {
         }
       }
     },
+    searchNotes(e) {
+      this.search = e.target.value;
+    },
+    filteredNotes(notes) {
+      const s = this.search.toLowerCase();
+      if (this.search) {
+        const potato = notes.filter(note => note.title.toLowerCase().includes(s));
+        console.log(potato);
+        return potato;
+      }
+      return notes;
+    },
   },
   name: 'home-page',
 };
@@ -124,10 +136,12 @@ export default {
       :newNote='newNote'
       :deleteNote='deleteNote'
       :saveNote='saveNote'
-      :activeNote='activeNote.id'>
+      :activeNote='activeNote.id'
+      :searchNotes='searchNotes'
+      >
       </header-menu>
     <note-list
-      :notes = 'notes'
+      :filteredNotes = 'this.filteredNotes(this.notes)'
       :activeNote = 'activeNote.id'
       :selectNote = 'selectNote'
       :formatListDate = 'formatListDate'>
@@ -138,7 +152,9 @@ export default {
       :activeNote='activeNote'
       :newNote='newNote'
       :formatDate='formatDate'
-      :toggleFlag='toggleFlag'>
+      :toggleFlag='toggleFlag'
+      :search='search'
+      >
     </note>
   </div>
 </template>
