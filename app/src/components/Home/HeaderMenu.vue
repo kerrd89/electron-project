@@ -1,46 +1,17 @@
-<style scoped>
-  header {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 10%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    -webkit-app-region: drag;
-    background: #698679;
-    -webkit-justify-content: flex-end;
-    justify-content: flex-end;
-  }
-  p {
-    margin: auto 10px;
-    cursor: pointer;
-  }
-  button {
-    border-radius: 2px;
-    color: black;
-    border: none;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    background: #698679;
-    cursor: pointer;
-    margin-right: 40px;
-  }
-  button:disabled {
-    border-radius: 2px;
-    font-size: 14px;
-    color: rgba(0,0,0,0.26);
-    letter-spacing: 0.5px;
-  }
-  input {
-    margin: auto 10px auto 0px;
-    height: 30px;
-    font-size: 16px;
-    background-color: #e0e0e7;
-    border: none;
-    padding: 5px;
-  }
-</style>
+<script>
+export default {
+  props: ['newNote', 'deleteNote', 'activeNote', 'isDirty', 'saveNote', 'searchNotes'],
+  created() {
+    // Set $route values that are not preset during unit testing
+    if (process.env.NODE_ENV === 'testing') {
+      this.$route = {
+        name: 'header',
+        path: '/header',
+      };
+    }
+  },
+};
+</script>
 
 <template>
   <header>
@@ -61,17 +32,46 @@
   </header>
 </template>
 
-<script>
-  export default {
-    props: ['newNote', 'deleteNote', 'activeNote', 'isDirty', 'saveNote', 'searchNotes'],
-    created() {
-      // Set $route values that are not preset during unit testing
-      if (process.env.NODE_ENV === 'testing') {
-        this.$route = {
-          name: 'header',
-          path: '/header',
-        };
-      }
-    },
-  };
-</script>
+<style scoped>
+header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  -webkit-app-region: drag;
+  background: #698679;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+p {
+  margin: auto 10px;
+  cursor: pointer;
+}
+button {
+  border-radius: 2px;
+  color: black;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  background: #698679;
+  cursor: pointer;
+  margin-right: 40px;
+}
+button:disabled {
+  border-radius: 2px;
+  font-size: 14px;
+  color: rgba(0,0,0,0.26);
+  letter-spacing: 0.5px;
+}
+input {
+  margin: auto 10px auto 0px;
+  height: 30px;
+  font-size: 16px;
+  background-color: #e0e0e7;
+  border: none;
+  padding: 5px;
+}
+</style>
