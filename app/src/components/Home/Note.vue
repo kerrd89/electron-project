@@ -17,8 +17,12 @@
       },
       readNote(note) {
         const voices = synth.getVoices();
+        const noteText1 = new SpeechSynthesisUtterance(this.formatDate(note));
+        const noteText2 = new SpeechSynthesisUtterance(note.title);
         const noteText = new SpeechSynthesisUtterance(note.body);
         noteText.voice = voices[0];
+        synth.speak(noteText1);
+        synth.speak(noteText2);
         synth.speak(noteText);
       },
     },

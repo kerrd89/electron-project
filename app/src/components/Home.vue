@@ -40,8 +40,8 @@ export default {
       this.addNote(obj.title, obj.body, obj.created_at, obj.flagged)
         .then((r) => {
           obj.id = r[0];
+          this.saveNote(this.activeNote.id);
           this.activeNote = obj;
-          this.fetchNotes();
         })
         .catch(err => console.log(err));
     },
