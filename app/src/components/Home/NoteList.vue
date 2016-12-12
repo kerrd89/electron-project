@@ -16,8 +16,7 @@ export default {
       return 'inactive';
     },
     sliceTitle(title) {
-      const shortTitle = title.slice(0, 10);
-      console.log(shortTitle);
+      const shortTitle = title.slice(0, 30);
       return shortTitle;
     },
   },
