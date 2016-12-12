@@ -51,6 +51,8 @@ describe('App starts and has correct title and buttons', () => {
       .then(() => {
         app.client.getText('.note-title').should.eventually.equal('New Note');
         app.client.getText('.note-body').should.eventually.equal('Body');
+        app.client.click('.note-body').sendKeys('abc')
+          .then(()=> app.client.getText('.note-body').should.eventually.equal('abc'));
         app.client.click('.delete-note');
         app.client.getText('.note-title').should.eventually.equal('');
         app.client.getText('.note-body').should.eventually.equal('');
