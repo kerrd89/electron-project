@@ -24,10 +24,14 @@ function createWindow () {
     minHeight: 500,
     titleBarStyle: 'hidden-inset',
     title: 'Notes',
-    icon: path.join(__dirname, 'app/icons/icon.ico'),
+    show: true,
   });
 
   mainWindow.loadURL(config.url);
+
+  mainWindow.once('read-to-show', () => mainWindow.show());
+
+  mainWindow.on('closed', () => mainWindow = null);
 
   if (process.env.NODE_ENV === 'development') {
     BrowserWindow.addDevToolsExtension(path.join(__dirname, '../node_modules/devtron'));

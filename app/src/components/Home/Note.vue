@@ -41,7 +41,7 @@
 <template>
   <article v-if='activeNote.title' @focusout='cancelReadNote'>
     <div class='note-header'>
-      <p class="time-stamp" @keyup='onChange(activeNote.id, $event, `created_at`)'
+      <p class="time-stamp" @keyup='onChange(activeNote.id, $event, `created_at`)' class='note-created-at'
       >{{formatDate(activeNote)}}</p>
       <button @click='toggleFlag' class='read-note-button'>
         <svg width="20px" height="20px" viewBox="2 2 20 20">
@@ -61,9 +61,9 @@
         </svg>
       </button>
     </div>
-    <h1 @keyup='onChange(activeNote.id, $event, `title`)' contenteditable="true"
+    <h1 @keyup='onChange(activeNote.id, $event, `title`)' contenteditable="true" class='note-title'
     >{{activeNote.title}}</h1>
-    <p class="body" @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true"
+    <p class="body" @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true" class='note-body'
     >{{activeNote.body}}</p>
     <p class="save-message" v-show='isDirty'>
       <span>This note has unsaved changes. Please save before leaving note.</span>
