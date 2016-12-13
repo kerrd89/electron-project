@@ -1,5 +1,10 @@
 <script>
+  import { remote } from 'electron';
+  import path from 'path';
+  const mainProcess = remote.require(path.join(process.cwd(), 'app/electron.js'));
+  const currentWindow = remote.getCurrentWindow();
   const synth = window.speechSynthesis;
+
   import applescript from 'applescript';
   export default {
     props: ['editNote', 'activeNote', 'newNote', 'formatDate', 'isDirty', 'toggleFlag'],
@@ -29,6 +34,7 @@
       copyToClipboard(body) {
         const script = `set the clipboard to "${body}"`;
         applescript.execString(script);
+        mainProcess.copyToClipboard(currentWindow);
       },
       cancelReadNote() {
         synth.cancel();
