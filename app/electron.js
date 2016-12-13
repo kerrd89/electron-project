@@ -74,3 +74,12 @@ const confirmDelete = exports.confirmDelete = (win) => {
   if (!response) { return true; }
   return false;
 };
+
+const copyToClipboard = exports.copyToClipboard = (win) => {
+  electron.dialog.showMessageBox(win, {
+    type: 'warning',
+    buttons: ['OK'],
+    message: 'The body has been copied to your clipboard',
+    icon: null,
+  });
+};
