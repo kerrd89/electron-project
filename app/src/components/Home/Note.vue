@@ -1,8 +1,9 @@
 <script>
   import { remote } from 'electron';
   import path from 'path';
-  const directory = process.env.NODE_ENV === 'development' ? process.cwd() : __dirname;
-  const mainProcess = remote.require(path.join('/Users/davidkerr/Projects/electron-project/app', '/electron.js'));
+  const isDev = () => process.env.NODE_ENV === 'development';
+  const directory = isDev() ? process.cwd().concat('/app') : process.env.APP_PATH;
+  const mainProcess = remote.require(path.join(directory, '/electron.js'));
   const currentWindow = remote.getCurrentWindow();
   const synth = window.speechSynthesis;
 

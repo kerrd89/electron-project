@@ -1,10 +1,13 @@
 require('sqlite3');
 var path = require('path');
+const isDev = () => process.env.NODE_ENV === 'development';
+const directory = isDev() ? process.cwd().concat('app') : process.env.APP_PATH;
+
 
 const database = require('knex')({
   client: 'sqlite3',
   connection: {
-    filename: path.join('/Users/davidkerr/Projects/electron-project/app', './db.sqlite'),
+    filename: path.join(directory, './db.sqlite'),
   },
   useNullAsDefault: true,
 });

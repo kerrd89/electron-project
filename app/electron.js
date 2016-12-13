@@ -28,7 +28,6 @@ function createWindow () {
   });
 
   mainWindow.loadURL(config.url);
-  mainWindow.openDevTools();
 
   mainWindow.once('read-to-show', () => mainWindow.show());
 
@@ -84,3 +83,5 @@ const copyToClipboard = exports.copyToClipboard = (win) => {
     icon: null,
   });
 };
+
+process.env['APP_PATH'] = app.getAppPath();
