@@ -62,6 +62,7 @@ export default {
       });
     },
     editNote(id, e, property) {
+      e.preventDefault();
       const input = e.target.value || ' ';
       this.activeNote[property] = input;
       for (let i = 0; i < this.notes.length; i++) {

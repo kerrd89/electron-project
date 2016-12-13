@@ -44,7 +44,7 @@
 </script>
 
 <template>
-  <article v-if='activeNote.title' @focusout='cancelReadNote'>
+  <article v-if='activeNote.created_at' @focusout='cancelReadNote'>
     <div class='note-header'>
       <p @keyup='onChange(activeNote.id, $event, `created_at`)' class='note-created-at'
       >{{formatDate(activeNote)}}</p>
