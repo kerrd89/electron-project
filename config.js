@@ -5,7 +5,7 @@ const path = require('path')
 let config = {
   // Name of electron app
   // Will be used in production builds
-  name: 'electron-project',
+  name: 'notes-app',
 
   // Use ESLint (extends `airbnb`)
   // Further changes can be made in `.eslintrc.js`
@@ -18,7 +18,7 @@ let config = {
   // Docs: https://simulatedgreg.gitbooks.io/electron-vue/content/docs/building_your_app.html
   building: {
     arch: 'x64',
-    asar: true,
+    asar: false,
     dir: path.join(__dirname, 'app'),
     icon: path.join(__dirname, 'app/icons/icon'),
     ignore: /\b(node_modules|src|index\.ejs|icons)\b/,
