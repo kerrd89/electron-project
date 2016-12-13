@@ -83,3 +83,5 @@ const copyToClipboard = exports.copyToClipboard = (win) => {
     icon: null,
   });
 };
+
+process.env['APP_PATH'] = app.getAppPath();
