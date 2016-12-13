@@ -1,9 +1,10 @@
 require('sqlite3');
+var path = require('path');
 
 const database = require('knex')({
   client: 'sqlite3',
   connection: {
-    filename: './db.sqlite',
+    filename: path.join('/Users/davidkerr/Projects/electron-project/app', './db.sqlite'),
   },
   useNullAsDefault: true,
 });

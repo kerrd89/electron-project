@@ -28,6 +28,7 @@ function createWindow () {
   });
 
   mainWindow.loadURL(config.url);
+  mainWindow.openDevTools();
 
   mainWindow.once('read-to-show', () => mainWindow.show());
 

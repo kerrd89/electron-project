@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-const path = require('path')
+const path = require('path');
 
 let config = {
   // Name of electron app
   // Will be used in production builds
-  name: 'electron-project',
+  name: 'notes-app',
 
   // Use ESLint (extends `airbnb`)
   // Further changes can be made in `.eslintrc.js`
@@ -26,8 +26,10 @@ let config = {
     overwrite: true,
     platform: process.env.PLATFORM_TARGET || 'all'
   }
-}
+};
 
-config.building.name = config.name
+console.log(config.building.dir);
 
-module.exports = config
+config.building.name = config.name;
+
+module.exports = config;
