@@ -5,10 +5,12 @@ import Note from './Home/Note';
 import moment from 'moment';
 import { remote } from 'electron';
 import path from 'path';
+
 const isDev = () => process.env.NODE_ENV === 'development';
 const directory = isDev() ? process.cwd().concat('/app') : process.env.APP_PATH;
 const mainProcess = remote.require(path.join(directory, '/electron.js'));
 const database = remote.require(path.join(directory, '/database.js'));
+
 const currentWindow = remote.getCurrentWindow();
 
 global.database = database;
