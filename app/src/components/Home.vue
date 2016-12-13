@@ -62,7 +62,7 @@ export default {
       });
     },
     editNote(id, e, property) {
-      const input = e.target.innerText || ' ';
+      const input = e.target.value || ' ';
       this.activeNote[property] = input;
       for (let i = 0; i < this.notes.length; i++) {
         if (this.notes[i].id === id) {

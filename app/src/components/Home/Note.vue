@@ -60,10 +60,10 @@
         </svg>
       </button>
     </div>
-    <h1 @keyup='onChange(activeNote.id, $event, `title`)' contenteditable="true" class='note-title'
-    >{{activeNote.title}}</h1>
-    <p @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true" class='note-body'
-    >{{activeNote.body}}</p>
+    <textarea v-model='activeNote.title' @keyup='onChange(activeNote.id, $event, `title`)' contenteditable="true" class='note-title'
+    />
+    <textarea v-model='activeNote.body' @keyup='onChange(activeNote.id, $event, `body`)' contenteditable="true" class='note-body'
+    />
     <p class="save-message" v-show='isDirty'>
       <span>This note has unsaved changes. Please save before leaving note.</span>
     </p>
@@ -85,17 +85,18 @@
     flex-direction: column;
   }
 
-  span {
-    margin-top: 10px;
-    background-color: yellow;
-    font-weight: 900;
+  textarea {
+    font-size: 20px;
+    border: none;
+    text-align: left;
+    margin: 10px 30px;
+    outline: none;
+    padding: 10px;
   }
 
-  h1 {
-    letter-spacing: 0.5px;
-    margin: 10px 40px;
-    outline: none;
-    text-align: left;
+  span {
+    background-color: #fff59d;
+    padding: 5px;
   }
 
   button {
@@ -120,10 +121,15 @@
     margin: auto;
   }
 
+  .note-title {
+    height: 25px;
+    margin-top: 30px;
+  }
+
   .note-body {
-    letter-spacing: 0.5px;
-    margin: 20px 40px;
-    outline: none;
-    text-align: left;
+    height: 55%;
+    font-size: 16px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
   }
 </style>

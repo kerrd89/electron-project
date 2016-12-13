@@ -5,7 +5,7 @@ const database = require('knex')({
   connection: {
     filename: './db.sqlite',
   },
-  useNullAsDefault: true
+  useNullAsDefault: true,
 });
 
 database.schema.hasTable('notes').then((exists) => {

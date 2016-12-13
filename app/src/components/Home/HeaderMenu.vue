@@ -46,10 +46,16 @@ header {
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
+
 p {
   margin: auto 10px;
   cursor: pointer;
 }
+
+p .delete-note:hover {
+  cursor: pointer;
+}
+
 button {
   border-radius: 2px;
   color: black;
@@ -60,12 +66,14 @@ button {
   cursor: pointer;
   margin-right: 40px;
 }
+
 button:disabled {
   border-radius: 2px;
   font-size: 14px;
   color: rgba(0,0,0,0.26);
   letter-spacing: 0.5px;
 }
+
 input {
   margin: auto 10px auto 0px;
   height: 30px;
@@ -73,5 +81,6 @@ input {
   background-color: #e0e0e7;
   border: none;
   padding: 5px;
+  text-indent: 5px;
 }
 </style>
