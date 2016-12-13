@@ -14,7 +14,7 @@
     "pack": "cross-env NODE_ENV=production webpack -p --progress --colors",
     "vue:route": "node tasks/vue/route.js",
     "vuex:module": "node tasks/vuex/module.js",
-    "postinstall": "electron-rebuild && npm run lint:fix && cd app && npm install",
+    "postinstall": "electron-rebuild && cd app && npm install",
     "test": "mocha tests/test.js"
   },
   "author": "Greg Holguin <simulatedgreg@gmail.com>",

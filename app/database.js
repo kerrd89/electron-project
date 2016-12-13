@@ -15,7 +15,7 @@ database.schema.hasTable('notes').then((exists) => {
   if (!exists) {
     return database.schema.createTable('notes', (t) => {
       t.increments('id').primary();
-      t.string('title', 100);
+      t.text('title');
       t.text('body');
       t.string('created_at');
       t.integer('flagged');
