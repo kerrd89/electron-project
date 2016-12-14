@@ -1,6 +1,6 @@
 # electron-notes-app
 
-> An electron-vue notes app with a sqlite3 db.  Uses applescript, knexjs, and text to speach.
+> An electron-vue notes app with a sqlite3 db.  Uses applescript, knexjs, and text to speech.
 
 ![](./electron-notes-app.gif)
 
