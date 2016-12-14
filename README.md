@@ -1,6 +1,8 @@
-# electron-project
+# electron-notes-app
 
-> An electron-vue project
+> An electron-vue notes app with a sqlite3 db.  Uses applescript, knexjs, and text to speach.
+
+![](./electron-notes-app.gif)
 
 ## Build Setup
 
@@ -19,8 +21,11 @@ npm run lint
 
 # run webpack in production
 npm run pack
+
+npm run test
+# verify the tests are working
+
 ```
-More information can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/docs/npm_scripts.html).
 
 ---
 
